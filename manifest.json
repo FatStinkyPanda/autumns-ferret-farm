@@ -1,0 +1,38 @@
+{
+    "name": "Autumn's Ferret Farm",
+    "short_name": "Ferret Farm",
+    "description": "A Tamagotchi-style ferret care and farming game!",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#87CEEB",
+    "theme_color": "#8B5A2B",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["games", "entertainment"],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "Feed Ferrets",
+            "url": "/index.html?tab=ferrets",
+            "description": "Check on your ferrets"
+        },
+        {
+            "name": "Visit Farm",
+            "url": "/index.html?tab=farm",
+            "description": "Tend to your crops"
+        }
+    ]
+}
