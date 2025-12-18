@@ -19,16 +19,12 @@
             --farm-cream: #FFF8DC;
             --grass-green: #7CB342;
             --sky-blue: #87CEEB;
-            --ferret-cream: #F5DEB3;
-            --ferret-brown: #8B4513;
             --heart-red: #E74C3C;
             --energy-yellow: #F1C40F;
             --health-green: #2ECC71;
             --hunger-orange: #E67E22;
             --soil-brown: #5D4037;
             --wood-brown: #6D4C41;
-            --sunset-orange: #FF7043;
-            --cloud-white: #FAFAFA;
         }
 
         * {
@@ -40,19 +36,17 @@
 
         body {
             font-family: 'Fredoka', sans-serif;
-            background: linear-gradient(180deg, var(--sky-blue) 0%, #B3E5FC 50%, var(--grass-green) 50%, #558B2F 100%);
+            background: linear-gradient(180deg, var(--sky-blue) 0%, #B3E5FC 40%, var(--grass-green) 40%, #558B2F 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Animated clouds */
         .clouds {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 50vh;
+            height: 40vh;
             pointer-events: none;
             overflow: hidden;
             z-index: 0;
@@ -60,267 +54,577 @@
 
         .cloud {
             position: absolute;
-            background: var(--cloud-white);
+            background: rgba(255,255,255,0.9);
             border-radius: 50%;
-            opacity: 0.9;
             animation: float-cloud linear infinite;
         }
 
         .cloud::before, .cloud::after {
             content: '';
             position: absolute;
-            background: var(--cloud-white);
+            background: rgba(255,255,255,0.9);
             border-radius: 50%;
         }
 
-        .cloud:nth-child(1) { width: 100px; height: 40px; top: 10%; animation-duration: 35s; }
-        .cloud:nth-child(1)::before { width: 50px; height: 50px; top: -25px; left: 15px; }
-        .cloud:nth-child(1)::after { width: 60px; height: 60px; top: -30px; left: 45px; }
+        .cloud:nth-child(1) { width: 80px; height: 35px; top: 8%; animation-duration: 40s; }
+        .cloud:nth-child(1)::before { width: 45px; height: 45px; top: -22px; left: 12px; }
+        .cloud:nth-child(1)::after { width: 55px; height: 50px; top: -28px; left: 38px; }
 
-        .cloud:nth-child(2) { width: 80px; height: 32px; top: 25%; animation-duration: 45s; animation-delay: -15s; }
-        .cloud:nth-child(2)::before { width: 40px; height: 40px; top: -20px; left: 10px; }
-        .cloud:nth-child(2)::after { width: 50px; height: 50px; top: -25px; left: 35px; }
+        .cloud:nth-child(2) { width: 60px; height: 28px; top: 18%; animation-duration: 50s; animation-delay: -20s; }
+        .cloud:nth-child(2)::before { width: 35px; height: 35px; top: -18px; left: 8px; }
+        .cloud:nth-child(2)::after { width: 40px; height: 38px; top: -20px; left: 28px; }
 
-        .cloud:nth-child(3) { width: 120px; height: 48px; top: 5%; animation-duration: 55s; animation-delay: -25s; }
-        .cloud:nth-child(3)::before { width: 60px; height: 60px; top: -30px; left: 20px; }
-        .cloud:nth-child(3)::after { width: 70px; height: 70px; top: -35px; left: 55px; }
+        .cloud:nth-child(3) { width: 100px; height: 40px; top: 5%; animation-duration: 60s; animation-delay: -35s; }
+        .cloud:nth-child(3)::before { width: 55px; height: 55px; top: -28px; left: 18px; }
+        .cloud:nth-child(3)::after { width: 60px; height: 58px; top: -35px; left: 50px; }
 
         @keyframes float-cloud {
-            from { left: -150px; }
+            from { left: -120px; }
             to { left: 100vw; }
         }
 
-        /* Sun */
         .sun {
             position: fixed;
-            top: 20px;
-            right: 30px;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, #FFD54F 0%, #FF9800 100%);
+            top: 15px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #FFE082 0%, #FFB300 100%);
             border-radius: 50%;
-            box-shadow: 0 0 60px rgba(255, 183, 77, 0.8);
+            box-shadow: 0 0 50px rgba(255, 179, 0, 0.6);
             z-index: 0;
-            animation: pulse-sun 4s ease-in-out infinite;
+            animation: pulse-sun 3s ease-in-out infinite;
         }
 
         @keyframes pulse-sun {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(255, 183, 77, 0.8); }
-            50% { transform: scale(1.05); box-shadow: 0 0 80px rgba(255, 183, 77, 0.9); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
         }
 
-        /* Main container */
         .game-container {
             position: relative;
             z-index: 1;
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
             padding: 10px;
             min-height: 100vh;
         }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, var(--wood-brown) 0%, var(--farm-brown) 100%);
-            border-radius: 20px;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3), inset 0 2px 0 rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 2px 0 rgba(255,255,255,0.15);
             border: 4px solid #4E342E;
             text-align: center;
         }
 
         .header h1 {
             font-family: 'Patrick Hand', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--farm-cream);
-            text-shadow: 3px 3px 0 #4E342E, -1px -1px 0 #4E342E;
-            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #4E342E;
         }
 
         .header .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--farm-tan);
-            margin-top: 5px;
         }
 
-        /* Navigation */
         .nav-tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
             justify-content: center;
         }
 
         .nav-tab {
             background: linear-gradient(180deg, var(--farm-cream) 0%, var(--farm-tan) 100%);
             border: 3px solid var(--farm-brown);
-            border-radius: 15px;
-            padding: 10px 16px;
+            border-radius: 12px;
+            padding: 8px 14px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: var(--farm-brown);
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 0 var(--wood-brown);
+            transition: all 0.15s ease;
+            box-shadow: 0 3px 0 var(--wood-brown);
         }
 
-        .nav-tab:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 var(--wood-brown);
-        }
-
+        .nav-tab:hover { transform: translateY(-2px); }
         .nav-tab:active, .nav-tab.active {
             transform: translateY(2px);
-            box-shadow: 0 2px 0 var(--wood-brown);
+            box-shadow: none;
             background: linear-gradient(180deg, var(--farm-tan) 0%, var(--farm-brown) 100%);
             color: var(--farm-cream);
         }
 
-        .nav-tab .icon {
-            margin-right: 5px;
-        }
-
-        /* Main content area */
         .content-area {
             background: linear-gradient(180deg, var(--farm-cream) 0%, #FFF5E6 100%);
-            border-radius: 25px;
-            padding: 20px;
-            min-height: 60vh;
-            border: 5px solid var(--wood-brown);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 2px 0 rgba(255,255,255,0.5);
+            border-radius: 20px;
+            padding: 15px;
+            min-height: 65vh;
+            border: 4px solid var(--wood-brown);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
         }
 
-        .tab-content {
-            display: none;
-        }
-
+        .tab-content { display: none; }
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.25s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Ferret Card */
-        .ferret-card {
-            background: linear-gradient(135deg, #FFF8E1 0%, var(--ferret-cream) 100%);
-            border-radius: 20px;
-            padding: 15px;
+        .stats-overview {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-radius: 12px;
+            padding: 12px;
+            border: 3px solid var(--hunger-orange);
             margin-bottom: 15px;
-            border: 3px solid var(--ferret-brown);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
         }
 
-        .ferret-card::before {
+        .stat-item { text-align: center; }
+        .stat-item .stat-icon { font-size: 1.4rem; }
+        .stat-item .stat-value { font-size: 1.1rem; font-weight: 700; color: var(--farm-brown); }
+        .stat-item .stat-name { font-size: 0.65rem; color: #666; }
+
+        /* ==================== FERRET CARD ==================== */
+        .ferret-card {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFE4B5 100%);
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 3px solid #8B4513;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .ferret-habitat {
+            background: linear-gradient(180deg, #E8F5E9 0%, #A5D6A7 50%, #81C784 100%);
+            border-radius: 12px;
+            height: 130px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #66BB6A;
+        }
+
+        .ferret-habitat::before {
             content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 6px, #4CAF50 6px, #4CAF50 8px, transparent 8px, transparent 14px);
+        }
+
+        /* ==================== ANIMATED FERRET ==================== */
+        .ferret {
+            position: absolute;
+            width: 90px;
+            height: 55px;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            transition: left 2s ease-in-out;
+        }
+
+        .ferret.face-left { transform: translateX(-50%) scaleX(-1); }
+
+        .ferret-body {
+            position: absolute;
+            width: 60px;
+            height: 24px;
+            border-radius: 30px 35px 22px 20px;
+            bottom: 10px;
+            left: 12px;
+            animation: breathe 2.5s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.06); }
+        }
+
+        .ferret-head {
+            position: absolute;
+            width: 30px;
+            height: 24px;
+            border-radius: 50% 55% 45% 40%;
+            bottom: 16px;
+            left: 0;
+            animation: head-bob 4s ease-in-out infinite;
+        }
+
+        @keyframes head-bob {
+            0%, 100% { transform: rotate(0deg); }
+            30% { transform: rotate(-6deg) translateY(-2px); }
+            70% { transform: rotate(4deg) translateY(1px); }
+        }
+
+        .ferret-snout {
+            position: absolute;
+            width: 16px;
+            height: 12px;
+            background: #FFF8E1;
+            border-radius: 50% 60% 50% 40%;
+            bottom: 18px;
+            left: -8px;
+        }
+
+        .ferret-nose {
+            position: absolute;
+            width: 7px;
+            height: 6px;
+            background: #E91E63;
+            border-radius: 50%;
+            bottom: 22px;
+            left: -10px;
+            animation: nose-twitch 3s ease-in-out infinite;
+        }
+
+        @keyframes nose-twitch {
+            0%, 85%, 100% { transform: scale(1); }
+            90% { transform: scale(1.1); }
+            95% { transform: scale(0.95); }
+        }
+
+        .ferret-eye {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            bottom: 24px;
+            animation: blink 4s ease-in-out infinite;
+        }
+
+        .ferret-eye.left { left: 5px; }
+        .ferret-eye.right { left: 16px; }
+
+        .ferret-eye::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 42%, 58%, 100% { transform: scaleY(1); }
+            45%, 55% { transform: scaleY(0.1); }
+        }
+
+        .ferret-ear {
+            position: absolute;
+            width: 12px;
+            height: 14px;
+            border-radius: 50% 50% 35% 35%;
+            bottom: 34px;
+        }
+
+        .ferret-ear.left { left: 3px; transform: rotate(-20deg); }
+        .ferret-ear.right { left: 18px; transform: rotate(15deg); }
+
+        .ferret-ear {
+            animation: ear-twitch 6s ease-in-out infinite;
+        }
+
+        .ferret-ear.right { animation-delay: 0.5s; }
+
+        @keyframes ear-twitch {
+            0%, 85%, 100% { transform: rotate(-20deg); }
+            88% { transform: rotate(-30deg); }
+            91% { transform: rotate(-15deg); }
+            94% { transform: rotate(-25deg); }
+        }
+
+        .ferret-mask {
+            position: absolute;
+            width: 20px;
+            height: 12px;
+            background: #5D4037;
+            border-radius: 40% 50% 50% 40%;
+            bottom: 18px;
+            left: 3px;
+            opacity: 0.8;
+        }
+
+        .ferret-leg {
+            position: absolute;
+            width: 9px;
+            height: 14px;
+            border-radius: 5px 5px 7px 7px;
+            bottom: 0;
+        }
+
+        .ferret-leg.front-left { left: 20px; }
+        .ferret-leg.front-right { left: 34px; }
+        .ferret-leg.back-left { left: 52px; }
+        .ferret-leg.back-right { left: 64px; }
+
+        .ferret-tail {
+            position: absolute;
+            width: 28px;
+            height: 12px;
+            border-radius: 12px;
+            bottom: 14px;
+            right: -2px;
+            transform-origin: left center;
+            animation: tail-wag 2s ease-in-out infinite;
+        }
+
+        @keyframes tail-wag {
+            0%, 100% { transform: rotate(-8deg); }
+            50% { transform: rotate(12deg); }
+        }
+
+        /* Walking animation */
+        .ferret.walking .ferret-leg.front-left, .ferret.walking .ferret-leg.back-right {
+            animation: leg-walk 0.25s ease-in-out infinite;
+        }
+        .ferret.walking .ferret-leg.front-right, .ferret.walking .ferret-leg.back-left {
+            animation: leg-walk 0.25s ease-in-out infinite 0.125s;
+        }
+
+        @keyframes leg-walk {
+            0%, 100% { height: 14px; bottom: 0; }
+            50% { height: 10px; bottom: 4px; }
+        }
+
+        /* Ferret Colors */
+        .ferret.sable .ferret-body, .ferret.sable .ferret-head, .ferret.sable .ferret-ear, .ferret.sable .ferret-tail { background: #8B7355; }
+        .ferret.sable .ferret-leg { background: #5D4037; }
+
+        .ferret.albino .ferret-body, .ferret.albino .ferret-head, .ferret.albino .ferret-ear, .ferret.albino .ferret-tail { background: #FFF8E1; }
+        .ferret.albino .ferret-leg { background: #FFECB3; }
+        .ferret.albino .ferret-mask { opacity: 0; }
+        .ferret.albino .ferret-eye { background: #E91E63; }
+
+        .ferret.chocolate .ferret-body, .ferret.chocolate .ferret-head, .ferret.chocolate .ferret-ear, .ferret.chocolate .ferret-tail { background: #6D4C41; }
+        .ferret.chocolate .ferret-leg { background: #4E342E; }
+
+        .ferret.cinnamon .ferret-body, .ferret.cinnamon .ferret-head, .ferret.cinnamon .ferret-ear, .ferret.cinnamon .ferret-tail { background: #D7A86E; }
+        .ferret.cinnamon .ferret-leg { background: #A67C52; }
+        .ferret.cinnamon .ferret-mask { background: #8D6E63; }
+
+        .ferret.silver .ferret-body, .ferret.silver .ferret-head, .ferret.silver .ferret-ear, .ferret.silver .ferret-tail { background: #9E9E9E; }
+        .ferret.silver .ferret-leg { background: #757575; }
+        .ferret.silver .ferret-mask { background: #424242; }
+
+        .ferret.champagne .ferret-body, .ferret.champagne .ferret-head, .ferret.champagne .ferret-ear, .ferret.champagne .ferret-tail { background: #F5DEB3; }
+        .ferret.champagne .ferret-leg { background: #DEB887; }
+        .ferret.champagne .ferret-mask { background: #A1887F; opacity: 0.6; }
+
+        /* ==================== FERRET STATES ==================== */
+        
+        /* Sleeping */
+        .ferret.sleeping .ferret-body { animation: sleep-breathe 3.5s ease-in-out infinite; }
+        @keyframes sleep-breathe {
+            0%, 100% { transform: scaleY(1) scaleX(1); }
+            50% { transform: scaleY(1.12) scaleX(0.96); }
+        }
+
+        .ferret.sleeping .ferret-head { animation: none; transform: rotate(-12deg) translateY(6px); }
+        .ferret.sleeping .ferret-eye { animation: none; transform: scaleY(0.1); }
+        .ferret.sleeping .ferret-tail { animation: sleep-tail 5s ease-in-out infinite; }
+        @keyframes sleep-tail {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .sleep-zzz {
+            position: absolute;
+            top: 8px;
+            right: 25%;
+            font-size: 1.3rem;
+            animation: float-zzz 2.5s ease-in-out infinite;
+        }
+
+        @keyframes float-zzz {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-12px) scale(1.15); opacity: 0.6; }
+        }
+
+        /* Eating */
+        .ferret.eating .ferret-head { animation: eat-bob 0.25s ease-in-out infinite; }
+        @keyframes eat-bob {
+            0%, 100% { transform: translateY(0) rotate(12deg); }
+            50% { transform: translateY(4px) rotate(18deg); }
+        }
+
+        .food-bowl {
+            position: absolute;
+            bottom: 8px;
+            left: 15%;
+            width: 28px;
+            height: 14px;
+            background: linear-gradient(180deg, #FF8A65 0%, #E64A19 100%);
+            border-radius: 4px 4px 12px 12px;
+            display: none;
+        }
+
+        .food-bowl::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            width: 20px;
+            height: 7px;
+            background: #8D6E63;
+            border-radius: 50%;
+        }
+
+        .ferret.eating ~ .food-bowl { display: block; animation: food-appear 0.3s ease; }
+        @keyframes food-appear { from { transform: scale(0); } to { transform: scale(1); } }
+
+        /* Playing */
+        .ferret.playing { animation: play-bounce 0.4s ease-in-out infinite; }
+        @keyframes play-bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            25% { transform: translateX(-50%) translateY(-18px) rotate(-8deg); }
+            50% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            75% { transform: translateX(-50%) translateY(-12px) rotate(8deg); }
+        }
+
+        .ferret.playing .ferret-tail { animation: play-tail 0.15s ease-in-out infinite; }
+        @keyframes play-tail {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(25deg); }
+        }
+
+        .play-stars {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--ferret-brown), var(--farm-tan), var(--ferret-brown));
+            bottom: 0;
+            pointer-events: none;
+            display: none;
         }
 
-        .ferret-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
+        .ferret.playing ~ .play-stars { display: block; }
 
-        .ferret-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: var(--farm-cream);
-            border: 3px solid var(--ferret-brown);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ferret-avatar.sleeping::after {
-            content: '💤';
+        .play-star {
             position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 1.2rem;
-            animation: float 2s ease-in-out infinite;
+            font-size: 1.1rem;
+            animation: star-pop 0.7s ease-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        .play-star:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+        .play-star:nth-child(2) { top: 25%; right: 20%; animation-delay: 0.2s; }
+        .play-star:nth-child(3) { top: 10%; left: 50%; animation-delay: 0.4s; }
+
+        @keyframes star-pop {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
         }
 
-        .ferret-info h3 {
-            font-size: 1.3rem;
-            color: var(--ferret-brown);
-            margin-bottom: 3px;
+        /* Status indicators */
+        .hunger-indicator, .sad-indicator {
+            position: absolute;
+            top: 8px;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .hunger-indicator { left: 12px; animation: indicator-pulse 1.2s ease-in-out infinite; }
+        .sad-indicator { right: 12px; animation: indicator-drip 2s ease-in-out infinite; }
+
+        .ferret.hungry ~ .hunger-indicator { display: block; }
+        .ferret.sad ~ .sad-indicator { display: block; }
+
+        @keyframes indicator-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+
+        @keyframes indicator-drip {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(6px); opacity: 0.5; }
+        }
+
+        /* ==================== FERRET INFO ==================== */
+        .ferret-info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .ferret-name-tag {
+            background: linear-gradient(135deg, var(--farm-brown) 0%, #6D4C41 100%);
+            color: var(--farm-cream);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .ferret-personality {
-            font-size: 0.85rem;
-            color: var(--farm-brown);
             background: var(--farm-tan);
-            padding: 3px 10px;
+            color: var(--farm-brown);
+            padding: 4px 10px;
             border-radius: 10px;
-            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .ferret-age {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 3px;
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 8px;
         }
 
-        /* Stats bars */
-        .stats-container {
+        .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .stat-bar {
-            background: rgba(0,0,0,0.1);
-            border-radius: 10px;
-            padding: 8px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 6px 8px;
         }
 
         .stat-label {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
+            gap: 4px;
+            font-size: 0.75rem;
             font-weight: 600;
             color: var(--farm-brown);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .stat-track {
-            height: 12px;
+            height: 10px;
             background: #DDD;
-            border-radius: 6px;
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
         }
 
         .stat-fill {
             height: 100%;
-            border-radius: 6px;
-            transition: width 0.5s ease;
+            border-radius: 5px;
+            transition: width 0.4s ease, background 0.4s ease;
             position: relative;
         }
 
@@ -332,182 +636,64 @@
             right: 0;
             height: 50%;
             background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
-            border-radius: 6px 6px 0 0;
         }
 
-        .stat-hunger .stat-fill { background: linear-gradient(90deg, #FF8A65, var(--hunger-orange)); }
-        .stat-happiness .stat-fill { background: linear-gradient(90deg, #F48FB1, var(--heart-red)); }
-        .stat-energy .stat-fill { background: linear-gradient(90deg, #FFE082, var(--energy-yellow)); }
-        .stat-health .stat-fill { background: linear-gradient(90deg, #81C784, var(--health-green)); }
+        .stat-fill.high { background: linear-gradient(90deg, #81C784, #4CAF50); }
+        .stat-fill.medium { background: linear-gradient(90deg, #FFB74D, #FF9800); }
+        .stat-fill.low { background: linear-gradient(90deg, #EF9A9A, #F44336); }
 
-        /* Action buttons */
+        /* Action Buttons */
         .action-buttons {
-            display: flex;
-            gap: 8px;
-            margin-top: 15px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
         }
 
         .action-btn {
-            flex: 1;
-            min-width: 80px;
-            padding: 10px 12px;
+            padding: 8px 6px;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .btn-feed {
-            background: linear-gradient(180deg, #FFCC80, var(--hunger-orange));
-            color: white;
-            box-shadow: 0 4px 0 #BF360C;
-        }
-
-        .btn-play {
-            background: linear-gradient(180deg, #F8BBD9, #E91E63);
-            color: white;
-            box-shadow: 0 4px 0 #880E4F;
-        }
-
-        .btn-rest {
-            background: linear-gradient(180deg, #B39DDB, #673AB7);
-            color: white;
-            box-shadow: 0 4px 0 #311B92;
-        }
-
-        .btn-adopt-out {
-            background: linear-gradient(180deg, #90CAF9, #2196F3);
-            color: white;
-            box-shadow: 0 4px 0 #0D47A1;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .action-btn:active {
-            transform: translateY(2px);
-            box-shadow: none;
-        }
-
-        .action-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Farm section */
-        .farm-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .farm-plot {
-            aspect-ratio: 1;
-            background: linear-gradient(180deg, var(--soil-brown) 0%, #3E2723 100%);
-            border-radius: 15px;
-            border: 3px solid #4E342E;
+            transition: all 0.15s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3);
+            gap: 2px;
         }
 
-        .farm-plot::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            height: 10px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
+        .action-btn .btn-icon { font-size: 1.2rem; }
 
-        .farm-plot:hover {
-            transform: scale(1.05);
-        }
+        .btn-feed { background: linear-gradient(180deg, #FFCC80, var(--hunger-orange)); color: white; box-shadow: 0 3px 0 #BF360C; }
+        .btn-play { background: linear-gradient(180deg, #F8BBD9, #E91E63); color: white; box-shadow: 0 3px 0 #880E4F; }
+        .btn-rest { background: linear-gradient(180deg, #B39DDB, #673AB7); color: white; box-shadow: 0 3px 0 #311B92; }
+        .btn-adopt-out { background: linear-gradient(180deg, #90CAF9, #2196F3); color: white; box-shadow: 0 3px 0 #0D47A1; }
 
-        .farm-plot.empty {
-            background: linear-gradient(180deg, #6D4C41 0%, var(--soil-brown) 100%);
-        }
+        .action-btn:hover { transform: translateY(-2px); }
+        .action-btn:active { transform: translateY(2px); box-shadow: none; }
+        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 
-        .farm-plot.empty::after {
-            content: '+';
-            font-size: 2rem;
-            color: rgba(255,255,255,0.3);
-        }
-
-        .farm-plot .crop-icon {
-            font-size: 2rem;
-            margin-bottom: 5px;
-            animation: grow-bounce 0.5s ease;
-        }
-
-        @keyframes grow-bounce {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .farm-plot .progress-ring {
-            width: 100%;
-            height: 8px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 4px;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        .farm-plot .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--grass-green), #4CAF50);
-            transition: width 0.5s ease;
-        }
-
-        .farm-plot.ready {
-            animation: pulse-ready 1s ease-in-out infinite;
-        }
-
-        @keyframes pulse-ready {
-            0%, 100% { box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3), 0 0 0 0 rgba(76, 175, 80, 0.7); }
-            50% { box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3), 0 0 0 10px rgba(76, 175, 80, 0); }
-        }
-
-        /* Seed selection */
+        /* ==================== FARM ==================== */
         .seed-selection {
             background: var(--farm-tan);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 3px dashed var(--farm-brown);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 2px dashed var(--farm-brown);
         }
 
         .seed-selection h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--farm-brown);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-align: center;
         }
 
         .seed-options {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -516,296 +702,219 @@
             background: var(--farm-cream);
             border: 2px solid var(--farm-brown);
             border-radius: 10px;
-            padding: 10px 15px;
+            padding: 8px 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
+            text-align: center;
+        }
+
+        .seed-btn:hover { background: white; transform: translateY(-2px); }
+        .seed-btn.selected { background: var(--grass-green); color: white; border-color: #388E3C; }
+
+        .seed-btn .seed-icon { font-size: 1.3rem; }
+        .seed-btn .seed-name { font-size: 0.7rem; font-weight: 600; display: block; }
+        .seed-btn .seed-time { font-size: 0.6rem; opacity: 0.7; }
+
+        .farm-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .farm-plot {
+            aspect-ratio: 1;
+            background: linear-gradient(180deg, var(--soil-brown) 0%, #3E2723 100%);
+            border-radius: 12px;
+            border: 3px solid #4E342E;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+            box-shadow: inset 0 -4px 8px rgba(0,0,0,0.3);
         }
 
-        .seed-btn:hover {
-            background: var(--farm-tan);
-            transform: translateY(-2px);
+        .farm-plot:hover { transform: scale(1.05); }
+        .farm-plot.empty::after { content: '+'; font-size: 1.8rem; color: rgba(255,255,255,0.3); }
+
+        .farm-plot .crop-icon {
+            font-size: 1.8rem;
+            animation: grow-pop 0.4s ease;
         }
 
-        .seed-btn.selected {
-            background: var(--grass-green);
-            color: white;
-            border-color: #388E3C;
+        @keyframes grow-pop {
+            0% { transform: scale(0) rotate(-10deg); }
+            60% { transform: scale(1.2) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
         }
 
-        .seed-btn .seed-icon {
-            font-size: 1.5rem;
+        .farm-plot .progress-ring {
+            width: 80%;
+            height: 6px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
         }
 
-        .seed-btn .seed-name {
-            font-size: 0.75rem;
-            font-weight: 600;
+        .farm-plot .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #66BB6A, #4CAF50);
+            transition: width 0.4s ease;
         }
 
-        .seed-btn .seed-time {
-            font-size: 0.65rem;
-            opacity: 0.7;
+        .farm-plot.ready { animation: ready-glow 1s ease-in-out infinite; }
+        @keyframes ready-glow {
+            0%, 100% { box-shadow: inset 0 -4px 8px rgba(0,0,0,0.3), 0 0 0 0 rgba(76,175,80,0.6); }
+            50% { box-shadow: inset 0 -4px 8px rgba(0,0,0,0.3), 0 0 15px 5px rgba(76,175,80,0.4); }
         }
 
-        /* Inventory */
+        .farm-plot.ready .crop-icon { animation: ready-bounce 0.5s ease-in-out infinite; }
+        @keyframes ready-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
         .inventory {
             background: linear-gradient(135deg, #EFEBE9 0%, #D7CCC8 100%);
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 12px;
             border: 3px solid var(--wood-brown);
         }
 
-        .inventory h3 {
-            font-size: 1rem;
-            color: var(--farm-brown);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .inventory h3 { font-size: 0.95rem; color: var(--farm-brown); margin-bottom: 8px; }
 
         .inventory-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
 
         .inventory-item {
             background: var(--farm-cream);
-            border-radius: 10px;
-            padding: 10px;
+            border-radius: 8px;
+            padding: 8px;
             text-align: center;
             border: 2px solid var(--farm-tan);
         }
 
-        .inventory-item .item-icon {
-            font-size: 1.5rem;
-            margin-bottom: 3px;
-        }
+        .inventory-item .item-icon { font-size: 1.3rem; }
+        .inventory-item .item-count { font-size: 0.9rem; font-weight: 700; color: var(--farm-brown); }
 
-        .inventory-item .item-count {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--farm-brown);
-        }
-
-        /* Adoption section */
-        .adoption-section {
-            margin-bottom: 20px;
-        }
+        /* ==================== ADOPTION ==================== */
+        .adoption-section { margin-bottom: 20px; }
 
         .section-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--farm-brown);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 3px dotted var(--farm-tan);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .shelter-ferrets {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px dotted var(--farm-tan);
         }
 
         .shelter-card {
             background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-            border-radius: 15px;
-            padding: 12px;
-            border: 3px solid #1976D2;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .shelter-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
+            border-radius: 12px;
+            padding: 10px;
             border: 2px solid #1976D2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .shelter-info {
-            flex: 1;
+        .shelter-ferret-preview {
+            width: 65px;
+            height: 50px;
+            background: linear-gradient(180deg, #E8F5E9 0%, #A5D6A7 100%);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
         }
 
-        .shelter-info h4 {
-            font-size: 1rem;
-            color: #0D47A1;
+        .mini-ferret {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.55);
+            width: 90px;
+            height: 55px;
         }
 
-        .shelter-info p {
-            font-size: 0.8rem;
-            color: #1565C0;
-        }
+        .shelter-info { flex: 1; }
+        .shelter-info h4 { font-size: 0.95rem; color: #0D47A1; }
+        .shelter-info p { font-size: 0.75rem; color: #1565C0; }
 
         .adopt-btn {
-            background: linear-gradient(180deg, #4CAF50, #388E3C);
+            background: linear-gradient(180deg, #66BB6A, #43A047);
             color: white;
             border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
+            border-radius: 8px;
+            padding: 8px 15px;
             font-family: 'Fredoka', sans-serif;
             font-weight: 600;
+            font-size: 0.85rem;
             cursor: pointer;
-            box-shadow: 0 3px 0 #1B5E20;
-            transition: all 0.2s ease;
+            box-shadow: 0 2px 0 #2E7D32;
+            transition: all 0.15s ease;
         }
 
-        .adopt-btn:hover {
-            transform: translateY(-2px);
+        .adopt-btn:hover { transform: translateY(-2px); }
+        .adopt-btn:active { transform: translateY(2px); box-shadow: none; }
+
+        .adopted-card {
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%);
+            border: 2px solid #E91E63;
         }
 
-        .adopt-btn:active {
-            transform: translateY(2px);
-            box-shadow: none;
-        }
+        .adopted-card h4 { color: #880E4F !important; }
+        .adopted-card p { color: #AD1457 !important; }
 
-        /* Settings/Data section */
-        .data-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        .empty-state { text-align: center; padding: 25px; color: #999; }
+        .empty-state .emoji { font-size: 2.5rem; margin-bottom: 8px; }
+
+        /* ==================== DATA TAB ==================== */
+        .data-section { display: flex; flex-direction: column; gap: 12px; }
 
         .data-card {
             background: linear-gradient(135deg, #FAFAFA 0%, #EEEEEE 100%);
-            border-radius: 15px;
-            padding: 15px;
-            border: 3px solid #9E9E9E;
+            border-radius: 12px;
+            padding: 12px;
+            border: 2px solid #BDBDBD;
         }
 
-        .data-card h3 {
-            font-size: 1rem;
-            color: #424242;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .data-card h3 { font-size: 0.95rem; color: #424242; margin-bottom: 8px; }
 
         .data-btn {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            margin-bottom: 10px;
-            transition: all 0.2s ease;
+            margin-bottom: 8px;
+            transition: all 0.15s ease;
         }
 
-        .data-btn:last-child {
-            margin-bottom: 0;
-        }
+        .data-btn:last-child { margin-bottom: 0; }
 
-        .btn-backup {
-            background: linear-gradient(180deg, #81D4FA, #039BE5);
-            color: white;
-            box-shadow: 0 4px 0 #01579B;
-        }
+        .btn-backup { background: linear-gradient(180deg, #81D4FA, #039BE5); color: white; box-shadow: 0 3px 0 #01579B; }
+        .btn-restore { background: linear-gradient(180deg, #A5D6A7, #43A047); color: white; box-shadow: 0 3px 0 #1B5E20; }
+        .btn-reset { background: linear-gradient(180deg, #EF9A9A, #E53935); color: white; box-shadow: 0 3px 0 #B71C1C; }
 
-        .btn-restore {
-            background: linear-gradient(180deg, #A5D6A7, #43A047);
-            color: white;
-            box-shadow: 0 4px 0 #1B5E20;
-        }
+        .data-btn:hover { transform: translateY(-2px); }
+        .data-btn:active { transform: translateY(2px); box-shadow: none; }
 
-        .btn-reset {
-            background: linear-gradient(180deg, #EF9A9A, #E53935);
-            color: white;
-            box-shadow: 0 4px 0 #B71C1C;
-        }
-
-        .data-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .data-btn:active {
-            transform: translateY(2px);
-            box-shadow: none;
-        }
-
-        /* Stats overview */
-        .stats-overview {
-            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
-            border-radius: 15px;
-            padding: 15px;
-            border: 3px solid var(--hunger-orange);
-            margin-bottom: 15px;
-        }
-
-        .stats-row {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stat-item .stat-icon {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .stat-item .stat-value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--farm-brown);
-        }
-
-        .stat-item .stat-name {
-            font-size: 0.7rem;
-            color: #666;
-        }
-
-        /* No ferrets message */
-        .no-ferrets {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--farm-brown);
-        }
-
-        .no-ferrets .icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-
-        .no-ferrets h3 {
-            margin-bottom: 10px;
-        }
-
-        .no-ferrets p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-bottom: 20px;
-        }
-
-        /* Modal */
+        /* ==================== MODALS ==================== */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.7);
             display: none;
             align-items: center;
@@ -814,120 +923,80 @@
             padding: 20px;
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal {
             background: var(--farm-cream);
-            border-radius: 25px;
-            padding: 25px;
-            max-width: 400px;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 350px;
             width: 100%;
-            border: 5px solid var(--farm-brown);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            animation: modal-pop 0.3s ease;
+            border: 4px solid var(--farm-brown);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            animation: modal-pop 0.25s ease;
         }
 
         @keyframes modal-pop {
-            from { transform: scale(0.8); opacity: 0; }
+            from { transform: scale(0.85); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
 
-        .modal h2 {
-            font-size: 1.5rem;
-            color: var(--farm-brown);
-            margin-bottom: 15px;
-            text-align: center;
-        }
+        .modal h2 { font-size: 1.3rem; color: var(--farm-brown); margin-bottom: 12px; text-align: center; }
 
         .modal-input {
             width: 100%;
-            padding: 12px;
-            border: 3px solid var(--farm-tan);
-            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid var(--farm-tan);
+            border-radius: 8px;
             font-family: 'Fredoka', sans-serif;
             font-size: 1rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        .modal-input:focus {
-            outline: none;
-            border-color: var(--farm-brown);
-        }
+        .modal-input:focus { outline: none; border-color: var(--farm-brown); }
 
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-        }
+        .modal-buttons { display: flex; gap: 8px; }
 
         .modal-btn {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
         }
 
-        .modal-btn-cancel {
-            background: #E0E0E0;
-            color: #666;
-        }
+        .modal-btn-cancel { background: #E0E0E0; color: #666; }
+        .modal-btn-confirm { background: linear-gradient(180deg, #81C784, #43A047); color: white; box-shadow: 0 2px 0 #2E7D32; }
 
-        .modal-btn-confirm {
-            background: linear-gradient(180deg, #81C784, #43A047);
-            color: white;
-            box-shadow: 0 3px 0 #1B5E20;
-        }
-
-        /* Feed modal */
         .feed-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .feed-option {
             background: var(--farm-tan);
-            border: 3px solid var(--farm-brown);
-            border-radius: 12px;
-            padding: 15px;
+            border: 2px solid var(--farm-brown);
+            border-radius: 10px;
+            padding: 12px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
-        .feed-option:hover:not(.disabled) {
-            transform: scale(1.05);
-            background: var(--farm-cream);
-        }
+        .feed-option:hover:not(.disabled) { transform: scale(1.05); background: var(--farm-cream); }
+        .feed-option.disabled { opacity: 0.4; cursor: not-allowed; }
 
-        .feed-option.disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+        .feed-option .food-icon { font-size: 1.8rem; }
+        .feed-option .food-name { font-size: 0.85rem; font-weight: 600; color: var(--farm-brown); }
+        .feed-option .food-count { font-size: 0.7rem; color: #666; }
+        .feed-option .food-boost { font-size: 0.65rem; color: #4CAF50; margin-top: 2px; }
 
-        .feed-option .food-icon {
-            font-size: 2rem;
-            margin-bottom: 5px;
-        }
-
-        .feed-option .food-name {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--farm-brown);
-        }
-
-        .feed-option .food-count {
-            font-size: 0.75rem;
-            color: #666;
-        }
-
-        /* Toast notification */
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -935,36 +1004,25 @@
             transform: translateX(-50%) translateY(100px);
             background: var(--farm-brown);
             color: white;
-            padding: 15px 25px;
-            border-radius: 15px;
+            padding: 12px 20px;
+            border-radius: 12px;
             font-weight: 600;
             z-index: 2000;
             transition: transform 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* File input hidden */
-        .file-input {
-            display: none;
-        }
-
-        /* Empty state for sections */
-        .empty-state {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            max-width: 90%;
             text-align: center;
-            padding: 30px;
-            color: #999;
         }
 
-        .empty-state .emoji {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
 
-        /* Goodbye animation */
+        .file-input { display: none; }
+
+        .no-ferrets { text-align: center; padding: 30px 15px; color: var(--farm-brown); }
+        .no-ferrets .icon { font-size: 3rem; margin-bottom: 10px; opacity: 0.5; }
+        .no-ferrets h3 { margin-bottom: 8px; }
+        .no-ferrets p { font-size: 0.85rem; opacity: 0.7; }
+
         .goodbye-animation {
             position: fixed;
             top: 50%;
@@ -981,53 +1039,29 @@
             100% { opacity: 0; transform: translate(-50%, -200%) scale(0.5); }
         }
 
-        /* Responsive */
-        @media (max-width: 400px) {
-            .nav-tabs {
-                gap: 5px;
-            }
-            .nav-tab {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            .header h1 {
-                font-size: 1.6rem;
-            }
-            .farm-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Install prompt */
         .install-prompt {
             background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
-            border: 3px solid var(--grass-green);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
+            border: 2px solid var(--grass-green);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
             display: none;
+            text-align: center;
         }
 
-        .install-prompt.show {
-            display: block;
-        }
-
-        .install-prompt p {
-            font-size: 0.9rem;
-            color: #2E7D32;
-            margin-bottom: 10px;
-        }
+        .install-prompt.show { display: block; }
+        .install-prompt p { font-size: 0.85rem; color: #2E7D32; margin-bottom: 8px; }
 
         .install-btn {
             background: linear-gradient(180deg, #66BB6A, #43A047);
             color: white;
             border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
+            border-radius: 8px;
+            padding: 8px 16px;
             font-family: 'Fredoka', sans-serif;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 3px 0 #2E7D32;
+            box-shadow: 0 2px 0 #2E7D32;
         }
 
         .dismiss-install {
@@ -1035,13 +1069,19 @@
             border: none;
             color: #666;
             cursor: pointer;
-            margin-left: 10px;
+            margin-left: 8px;
             text-decoration: underline;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 380px) {
+            .nav-tab { padding: 6px 10px; font-size: 0.75rem; }
+            .header h1 { font-size: 1.5rem; }
+            .action-buttons { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
-    <!-- Background elements -->
     <div class="sun"></div>
     <div class="clouds">
         <div class="cloud"></div>
@@ -1049,64 +1089,47 @@
         <div class="cloud"></div>
     </div>
 
-    <!-- Main game container -->
     <div class="game-container">
-        <!-- Header -->
         <header class="header">
             <h1>🦡 Autumn's Ferret Farm 🦡</h1>
             <p class="subtitle">Care for your fuzzy friends!</p>
         </header>
 
-        <!-- Install prompt -->
         <div class="install-prompt" id="installPrompt">
-            <p>📱 Install this app for the best experience!</p>
+            <p>📱 Install for the best experience!</p>
             <button class="install-btn" id="installBtn">Install App</button>
             <button class="dismiss-install" id="dismissInstall">Not now</button>
         </div>
 
-        <!-- Navigation -->
         <nav class="nav-tabs">
-            <button class="nav-tab active" data-tab="ferrets">
-                <span class="icon">🦡</span>Ferrets
-            </button>
-            <button class="nav-tab" data-tab="farm">
-                <span class="icon">🌾</span>Farm
-            </button>
-            <button class="nav-tab" data-tab="adoption">
-                <span class="icon">🏠</span>Adopt
-            </button>
-            <button class="nav-tab" data-tab="data">
-                <span class="icon">💾</span>Data
-            </button>
+            <button class="nav-tab active" data-tab="ferrets">🦡 Ferrets</button>
+            <button class="nav-tab" data-tab="farm">🌾 Farm</button>
+            <button class="nav-tab" data-tab="adoption">🏠 Adopt</button>
+            <button class="nav-tab" data-tab="data">💾 Data</button>
         </nav>
 
-        <!-- Content area -->
         <main class="content-area">
-            <!-- Ferrets Tab -->
             <div class="tab-content active" id="ferretsTab">
                 <div class="stats-overview">
-                    <div class="stats-row">
-                        <div class="stat-item">
-                            <span class="stat-icon">🦡</span>
-                            <span class="stat-value" id="ferretCount">0</span>
-                            <span class="stat-name">Ferrets</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-icon">🌾</span>
-                            <span class="stat-value" id="totalFood">0</span>
-                            <span class="stat-name">Food</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-icon">💝</span>
-                            <span class="stat-value" id="adoptedOut">0</span>
-                            <span class="stat-name">Adopted Out</span>
-                        </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🦡</span>
+                        <span class="stat-value" id="ferretCount">0</span>
+                        <span class="stat-name">Ferrets</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🌾</span>
+                        <span class="stat-value" id="totalFood">0</span>
+                        <span class="stat-name">Food</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">💕</span>
+                        <span class="stat-value" id="adoptedOut">0</span>
+                        <span class="stat-name">Adopted Out</span>
                     </div>
                 </div>
                 <div id="ferretsList"></div>
             </div>
 
-            <!-- Farm Tab -->
             <div class="tab-content" id="farmTab">
                 <div class="seed-selection">
                     <h3>🌱 Select Seeds to Plant</h3>
@@ -1133,87 +1156,55 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="farm-grid" id="farmGrid"></div>
-
                 <div class="inventory">
                     <h3>📦 Food Storage</h3>
                     <div class="inventory-grid">
-                        <div class="inventory-item">
-                            <div class="item-icon">🥕</div>
-                            <div class="item-count" id="carrotCount">0</div>
-                        </div>
-                        <div class="inventory-item">
-                            <div class="item-icon">🍗</div>
-                            <div class="item-count" id="chickenCount">0</div>
-                        </div>
-                        <div class="inventory-item">
-                            <div class="item-icon">🥚</div>
-                            <div class="item-count" id="eggCount">0</div>
-                        </div>
-                        <div class="inventory-item">
-                            <div class="item-icon">🍬</div>
-                            <div class="item-count" id="treatCount">0</div>
-                        </div>
+                        <div class="inventory-item"><div class="item-icon">🥕</div><div class="item-count" id="carrotCount">0</div></div>
+                        <div class="inventory-item"><div class="item-icon">🍗</div><div class="item-count" id="chickenCount">0</div></div>
+                        <div class="inventory-item"><div class="item-icon">🥚</div><div class="item-count" id="eggCount">0</div></div>
+                        <div class="inventory-item"><div class="item-icon">🍬</div><div class="item-count" id="treatCount">0</div></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Adoption Tab -->
             <div class="tab-content" id="adoptionTab">
                 <div class="adoption-section">
                     <h3 class="section-title">🏠 Ferret Shelter</h3>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">
-                        Give a loving home to a ferret in need!
-                    </p>
-                    <div class="shelter-ferrets" id="shelterFerrets"></div>
+                    <p style="font-size: 0.8rem; color: #666; margin-bottom: 12px;">Give a loving home to a ferret in need!</p>
+                    <div id="shelterFerrets"></div>
                 </div>
-
                 <div class="adoption-section">
                     <h3 class="section-title">💕 Happy Adoptions</h3>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">
-                        Ferrets you've helped find loving families!
-                    </p>
+                    <p style="font-size: 0.8rem; color: #666; margin-bottom: 12px;">Ferrets you've helped find loving families!</p>
                     <div id="adoptedFerrets"></div>
                 </div>
             </div>
 
-            <!-- Data Tab -->
             <div class="tab-content" id="dataTab">
                 <div class="data-section">
                     <div class="data-card">
                         <h3>💾 Backup & Restore</h3>
-                        <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">
-                            Save your progress to a file or restore from a backup.
-                        </p>
-                        <button class="data-btn btn-backup" id="backupBtn">
-                            ⬇️ Download Backup
-                        </button>
-                        <button class="data-btn btn-restore" id="restoreBtn">
-                            ⬆️ Restore from File
-                        </button>
+                        <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Save your progress or restore from backup.</p>
+                        <button class="data-btn btn-backup" id="backupBtn">⬇️ Download Backup</button>
+                        <button class="data-btn btn-restore" id="restoreBtn">⬆️ Restore from File</button>
                         <input type="file" class="file-input" id="restoreInput" accept=".json">
                     </div>
-
                     <div class="data-card">
                         <h3>⚠️ Danger Zone</h3>
-                        <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">
-                            This will delete ALL your progress!
-                        </p>
-                        <button class="data-btn btn-reset" id="resetBtn">
-                            🗑️ Reset Everything
-                        </button>
+                        <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">This will delete ALL your progress!</p>
+                        <button class="data-btn btn-reset" id="resetBtn">🗑️ Reset Everything</button>
                     </div>
-
                     <div class="data-card">
-                        <h3>ℹ️ About</h3>
-                        <p style="font-size: 0.85rem; color: #666; line-height: 1.6;">
-                            <strong>Autumn's Ferret Farm</strong> is a Tamagotchi-style game where you care for adorable ferrets!
-                            <br><br>
-                            🦡 Feed, play with, and rest your ferrets<br>
-                            🌾 Grow food on your farm<br>
-                            🏠 Adopt ferrets or find them loving homes<br>
-                            💾 Your progress saves automatically!
+                        <h3>ℹ️ How to Play</h3>
+                        <p style="font-size: 0.8rem; color: #666; line-height: 1.5;">
+                            🦡 <strong>Adopt</strong> ferrets from the shelter<br>
+                            🌾 <strong>Grow food</strong> on your farm<br>
+                            🍽️ <strong>Feed</strong> your ferrets to keep them happy<br>
+                            🎮 <strong>Play</strong> with them for happiness<br>
+                            😴 <strong>Rest</strong> to restore energy<br>
+                            🏠 <strong>Find homes</strong> for ferrets you've raised<br>
+                            💾 <strong>Progress saves automatically!</strong>
                         </p>
                     </div>
                 </div>
@@ -1221,7 +1212,6 @@
         </main>
     </div>
 
-    <!-- Feed Modal -->
     <div class="modal-overlay" id="feedModal">
         <div class="modal">
             <h2>🍽️ Feed <span id="feedFerretName"></span></h2>
@@ -1232,26 +1222,23 @@
         </div>
     </div>
 
-    <!-- Name Modal -->
     <div class="modal-overlay" id="nameModal">
         <div class="modal">
             <h2>🦡 Name Your New Ferret!</h2>
-            <input type="text" class="modal-input" id="ferretNameInput" placeholder="Enter a name..." maxlength="20">
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">
-                Personality: <strong id="newFerretPersonality"></strong>
-            </p>
+            <div id="adoptPreview" style="margin-bottom: 12px;"></div>
+            <input type="text" class="modal-input" id="ferretNameInput" placeholder="Enter a name..." maxlength="15">
+            <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Personality: <strong id="newFerretPersonality"></strong></p>
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-cancel" id="cancelAdopt">Cancel</button>
-                <button class="modal-btn modal-btn-confirm" id="confirmAdopt">Adopt!</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmAdopt">Adopt! 💕</button>
             </div>
         </div>
     </div>
 
-    <!-- Confirm Modal -->
     <div class="modal-overlay" id="confirmModal">
         <div class="modal">
             <h2 id="confirmTitle">Confirm</h2>
-            <p id="confirmMessage" style="margin-bottom: 15px; color: #666;"></p>
+            <p id="confirmMessage" style="margin-bottom: 12px; color: #666;"></p>
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-cancel" id="confirmCancel">Cancel</button>
                 <button class="modal-btn modal-btn-confirm" id="confirmOk">Confirm</button>
@@ -1259,43 +1246,36 @@
         </div>
     </div>
 
-    <!-- Toast -->
     <div class="toast" id="toast"></div>
 
     <script>
-        // ============================================
-        // AUTUMN'S FERRET FARM - GAME ENGINE
-        // ============================================
-
-        // Game configuration
         const CONFIG = {
-            TICK_RATE: 1000, // 1 second
-            STAT_DECAY_RATE: 0.1, // per tick
+            TICK_RATE: 1000,
+            STAT_DECAY_RATE: 0.12,
+            MOVEMENT_INTERVAL: 5000,
             CROPS: {
-                carrot: { icon: '🥕', growTime: 30, hungerBoost: 15 },
-                chicken: { icon: '🍗', growTime: 60, hungerBoost: 25 },
-                egg: { icon: '🥚', growTime: 45, hungerBoost: 20 },
-                treat: { icon: '🍬', growTime: 90, hungerBoost: 10, happinessBoost: 15 }
+                carrot: { icon: '🥕', growTime: 30, hungerBoost: 20, name: 'Carrot' },
+                chicken: { icon: '🍗', growTime: 60, hungerBoost: 35, name: 'Chicken' },
+                egg: { icon: '🥚', growTime: 45, hungerBoost: 25, name: 'Egg' },
+                treat: { icon: '🍬', growTime: 90, hungerBoost: 15, happinessBoost: 25, name: 'Treat' }
             },
             PERSONALITIES: [
                 { name: 'Playful', emoji: '🎮', hungerDecay: 1.2, happinessDecay: 0.8, energyDecay: 1.3 },
-                { name: 'Lazy', emoji: '😴', hungerDecay: 0.8, happinessDecay: 1.0, energyDecay: 0.7 },
+                { name: 'Lazy', emoji: '😴', hungerDecay: 0.7, happinessDecay: 1.0, energyDecay: 0.6 },
                 { name: 'Curious', emoji: '🔍', hungerDecay: 1.0, happinessDecay: 0.9, energyDecay: 1.1 },
                 { name: 'Mischievous', emoji: '😈', hungerDecay: 1.1, happinessDecay: 1.1, energyDecay: 1.2 },
-                { name: 'Cuddly', emoji: '🤗', hungerDecay: 0.9, happinessDecay: 0.7, energyDecay: 0.9 },
+                { name: 'Cuddly', emoji: '🤗', hungerDecay: 0.9, happinessDecay: 0.6, energyDecay: 0.8 },
                 { name: 'Adventurous', emoji: '🌟', hungerDecay: 1.3, happinessDecay: 1.0, energyDecay: 1.4 }
             ],
-            FERRET_COLORS: ['🦡', '🦦', '🐿️', '🐾'],
-            SHELTER_REFRESH_TIME: 60000, // 1 minute
-            PLOT_COUNT: 6
+            COLORS: ['sable', 'albino', 'chocolate', 'cinnamon', 'silver', 'champagne'],
+            PLOT_COUNT: 6,
+            SHELTER_REFRESH: 90000
         };
 
-        // Database name for IndexedDB
         const DB_NAME = 'AutumnsFerretFarm';
-        const DB_VERSION = 1;
+        const DB_VERSION = 2;
         const STORE_NAME = 'gameData';
 
-        // Game state
         let gameState = {
             ferrets: [],
             inventory: { carrot: 5, chicken: 2, egg: 3, treat: 1 },
@@ -1311,23 +1291,15 @@
         let pendingAdoption = null;
         let confirmCallback = null;
         let feedingFerretId = null;
-
-        // ============================================
-        // DATABASE FUNCTIONS (IndexedDB)
-        // ============================================
+        let ferretMovementTimers = {};
 
         async function initDB() {
             return new Promise((resolve, reject) => {
                 const request = indexedDB.open(DB_NAME, DB_VERSION);
-
                 request.onerror = () => reject(request.error);
-                request.onsuccess = () => {
-                    db = request.result;
-                    resolve(db);
-                };
-
-                request.onupgradeneeded = (event) => {
-                    const database = event.target.result;
+                request.onsuccess = () => { db = request.result; resolve(db); };
+                request.onupgradeneeded = (e) => {
+                    const database = e.target.result;
                     if (!database.objectStoreNames.contains(STORE_NAME)) {
                         database.createObjectStore(STORE_NAME, { keyPath: 'id' });
                     }
@@ -1337,112 +1309,122 @@
 
         async function saveGame() {
             if (!db) return;
-
             return new Promise((resolve, reject) => {
-                const transaction = db.transaction([STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STORE_NAME);
-
+                const tx = db.transaction([STORE_NAME], 'readwrite');
+                const store = tx.objectStore(STORE_NAME);
                 gameState.lastUpdate = Date.now();
-                const request = store.put({ id: 'save', data: gameState });
-
-                request.onsuccess = () => resolve();
-                request.onerror = () => reject(request.error);
+                store.put({ id: 'save', data: gameState }).onsuccess = () => resolve();
             });
         }
 
         async function loadGame() {
             if (!db) return null;
-
             return new Promise((resolve, reject) => {
-                const transaction = db.transaction([STORE_NAME], 'readonly');
-                const store = transaction.objectStore(STORE_NAME);
+                const tx = db.transaction([STORE_NAME], 'readonly');
+                const store = tx.objectStore(STORE_NAME);
                 const request = store.get('save');
-
-                request.onsuccess = () => {
-                    if (request.result) {
-                        resolve(request.result.data);
-                    } else {
-                        resolve(null);
-                    }
-                };
-                request.onerror = () => reject(request.error);
+                request.onsuccess = () => resolve(request.result?.data || null);
             });
         }
 
-        // ============================================
-        // GAME LOGIC
-        // ============================================
-
         function generateFerret(name = null) {
             const personality = CONFIG.PERSONALITIES[Math.floor(Math.random() * CONFIG.PERSONALITIES.length)];
-            const color = CONFIG.FERRET_COLORS[Math.floor(Math.random() * CONFIG.FERRET_COLORS.length)];
-
+            const color = CONFIG.COLORS[Math.floor(Math.random() * CONFIG.COLORS.length)];
             return {
                 id: Date.now() + Math.random(),
                 name: name || generateFerretName(),
-                personality: personality,
-                color: color,
-                hunger: 70 + Math.random() * 30,
-                happiness: 70 + Math.random() * 30,
-                energy: 70 + Math.random() * 30,
+                personality, color,
+                hunger: 70 + Math.random() * 25,
+                happiness: 70 + Math.random() * 25,
+                energy: 70 + Math.random() * 25,
                 health: 100,
                 age: 0,
                 isResting: false,
+                isEating: false,
+                isPlaying: false,
+                position: 50,
+                faceLeft: Math.random() > 0.5,
                 created: Date.now()
             };
         }
 
         function generateFerretName() {
-            const names = [
-                'Noodle', 'Slinky', 'Bandit', 'Cookie', 'Ziggy', 'Pepper',
-                'Cocoa', 'Maple', 'Hazel', 'Peanut', 'Biscuit', 'Mochi',
-                'Waffles', 'Nugget', 'Sprout', 'Cinnamon', 'Butterscotch', 'Toffee',
-                'Whiskers', 'Fuzzy', 'Snickers', 'Caramel', 'Pretzel', 'Churro'
-            ];
+            const names = ['Noodle', 'Slinky', 'Bandit', 'Cookie', 'Ziggy', 'Pepper', 'Cocoa', 'Maple', 
+                'Hazel', 'Peanut', 'Biscuit', 'Mochi', 'Waffles', 'Nugget', 'Sprout', 'Cinnamon', 
+                'Butterscotch', 'Toffee', 'Whiskers', 'Fuzzy', 'Snickers', 'Caramel', 'Pretzel', 'Churro',
+                'Noodles', 'Boo', 'Shadow', 'Rocket', 'Luna', 'Ginger', 'Oreo', 'Pumpkin'];
             return names[Math.floor(Math.random() * names.length)];
+        }
+
+        function createFerretHTML(ferret, mini = false) {
+            const scale = mini ? 'transform: translateX(-50%) scale(0.55);' : 'transform: translateX(-50%);';
+            const stateClasses = [
+                ferret.color,
+                ferret.isResting ? 'sleeping' : '',
+                ferret.isEating ? 'eating' : '',
+                ferret.isPlaying ? 'playing' : '',
+                ferret.hunger < 30 ? 'hungry' : '',
+                ferret.happiness < 30 ? 'sad' : '',
+                ferret.faceLeft && !ferret.isResting ? 'face-left' : ''
+            ].filter(Boolean).join(' ');
+            
+            return `
+                <div class="ferret ${stateClasses}" style="left: ${ferret.position || 50}%; ${scale}" data-id="${ferret.id}">
+                    <div class="ferret-body"></div>
+                    <div class="ferret-head"></div>
+                    <div class="ferret-snout"></div>
+                    <div class="ferret-nose"></div>
+                    <div class="ferret-mask"></div>
+                    <div class="ferret-eye left"></div>
+                    <div class="ferret-eye right"></div>
+                    <div class="ferret-ear left"></div>
+                    <div class="ferret-ear right"></div>
+                    <div class="ferret-leg front-left"></div>
+                    <div class="ferret-leg front-right"></div>
+                    <div class="ferret-leg back-left"></div>
+                    <div class="ferret-leg back-right"></div>
+                    <div class="ferret-tail"></div>
+                </div>
+                ${ferret.isResting ? '<div class="sleep-zzz">💤</div>' : ''}
+                ${ferret.isPlaying ? '<div class="play-stars"><span class="play-star">⭐</span><span class="play-star">✨</span><span class="play-star">⭐</span></div>' : ''}
+                <div class="food-bowl"></div>
+                <div class="hunger-indicator">🍖❓</div>
+                <div class="sad-indicator">💧</div>
+            `;
         }
 
         function updateFerretStats() {
             const now = Date.now();
-            const elapsed = (now - gameState.lastUpdate) / 1000; // seconds
+            const elapsed = (now - gameState.lastUpdate) / 1000;
 
             gameState.ferrets.forEach(ferret => {
+                if (ferret.isEating || ferret.isPlaying) return;
+
                 if (!ferret.isResting) {
-                    // Decay stats based on personality
                     ferret.hunger -= CONFIG.STAT_DECAY_RATE * elapsed * ferret.personality.hungerDecay;
                     ferret.happiness -= CONFIG.STAT_DECAY_RATE * elapsed * ferret.personality.happinessDecay;
-                    ferret.energy -= CONFIG.STAT_DECAY_RATE * elapsed * ferret.personality.energyDecay * 0.5;
+                    ferret.energy -= CONFIG.STAT_DECAY_RATE * elapsed * ferret.personality.energyDecay * 0.4;
                 } else {
-                    // Resting recovers energy
-                    ferret.energy += CONFIG.STAT_DECAY_RATE * elapsed * 2;
-                    ferret.happiness -= CONFIG.STAT_DECAY_RATE * elapsed * 0.3;
+                    ferret.energy += CONFIG.STAT_DECAY_RATE * elapsed * 1.5;
+                    ferret.happiness -= CONFIG.STAT_DECAY_RATE * elapsed * 0.15;
                 }
 
-                // Clamp values
                 ferret.hunger = Math.max(0, Math.min(100, ferret.hunger));
                 ferret.happiness = Math.max(0, Math.min(100, ferret.happiness));
                 ferret.energy = Math.max(0, Math.min(100, ferret.energy));
 
-                // Health affected by low stats
                 const avgStats = (ferret.hunger + ferret.happiness + ferret.energy) / 3;
-                if (avgStats < 30) {
-                    ferret.health -= CONFIG.STAT_DECAY_RATE * elapsed * 0.5;
-                } else if (avgStats > 70) {
-                    ferret.health += CONFIG.STAT_DECAY_RATE * elapsed * 0.2;
-                }
+                if (avgStats < 25) ferret.health -= CONFIG.STAT_DECAY_RATE * elapsed * 0.25;
+                else if (avgStats > 70) ferret.health += CONFIG.STAT_DECAY_RATE * elapsed * 0.1;
                 ferret.health = Math.max(0, Math.min(100, ferret.health));
 
-                // Age increases
-                ferret.age += elapsed / 60; // Age in minutes
+                ferret.age += elapsed / 60;
             });
 
-            // Update farm plots
             gameState.farm.forEach(plot => {
                 if (plot.crop && !plot.ready) {
                     plot.progress += elapsed;
-                    if (plot.progress >= CONFIG.CROPS[plot.crop].growTime) {
-                        plot.ready = true;
-                    }
+                    if (plot.progress >= CONFIG.CROPS[plot.crop].growTime) plot.ready = true;
                 }
             });
 
@@ -1450,65 +1432,84 @@
         }
 
         function feedFerret(ferretId, food) {
-            const ferret = gameState.ferrets.find(f => f.id === ferretId);
+            const ferret = gameState.ferrets.find(f => f.id == ferretId);
             if (!ferret || gameState.inventory[food] <= 0) return false;
 
             gameState.inventory[food]--;
-            ferret.hunger += CONFIG.CROPS[food].hungerBoost;
-            if (CONFIG.CROPS[food].happinessBoost) {
-                ferret.happiness += CONFIG.CROPS[food].happinessBoost;
-            }
-
-            ferret.hunger = Math.min(100, ferret.hunger);
-            ferret.happiness = Math.min(100, ferret.happiness);
-
-            showToast(`${ferret.name} enjoyed the ${food}! 😋`);
-            saveGame();
+            ferret.isEating = true;
+            ferret.isResting = false;
             renderFerrets();
-            updateOverviewStats();
+
+            setTimeout(() => {
+                ferret.hunger += CONFIG.CROPS[food].hungerBoost;
+                if (CONFIG.CROPS[food].happinessBoost) ferret.happiness += CONFIG.CROPS[food].happinessBoost;
+                ferret.hunger = Math.min(100, ferret.hunger);
+                ferret.happiness = Math.min(100, ferret.happiness);
+                ferret.isEating = false;
+                showToast(`${ferret.name} loved the ${CONFIG.CROPS[food].name}! 😋`);
+                saveGame();
+                renderFerrets();
+                updateOverviewStats();
+            }, 2000);
             return true;
         }
 
         function playWithFerret(ferretId) {
-            const ferret = gameState.ferrets.find(f => f.id === ferretId);
-            if (!ferret || ferret.energy < 10) {
-                showToast(`${ferret.name} is too tired to play! 😴`);
-                return false;
-            }
+            const ferret = gameState.ferrets.find(f => f.id == ferretId);
+            if (!ferret) return false;
+            if (ferret.energy < 15) { showToast(`${ferret.name} is too tired! 😴`); return false; }
 
-            ferret.happiness += 20;
-            ferret.energy -= 15;
-            ferret.hunger -= 5;
-
-            ferret.happiness = Math.min(100, ferret.happiness);
-            ferret.energy = Math.max(0, ferret.energy);
-            ferret.hunger = Math.max(0, ferret.hunger);
-
-            showToast(`${ferret.name} had so much fun! 🎉`);
-            saveGame();
+            ferret.isPlaying = true;
+            ferret.isResting = false;
             renderFerrets();
+
+            setTimeout(() => {
+                ferret.happiness += 25;
+                ferret.energy -= 20;
+                ferret.hunger -= 8;
+                ferret.happiness = Math.min(100, ferret.happiness);
+                ferret.energy = Math.max(0, ferret.energy);
+                ferret.hunger = Math.max(0, ferret.hunger);
+                ferret.isPlaying = false;
+                showToast(`${ferret.name} had so much fun! 🎉`);
+                saveGame();
+                renderFerrets();
+            }, 2500);
             return true;
         }
 
         function toggleRest(ferretId) {
-            const ferret = gameState.ferrets.find(f => f.id === ferretId);
+            const ferret = gameState.ferrets.find(f => f.id == ferretId);
             if (!ferret) return;
-
             ferret.isResting = !ferret.isResting;
-            showToast(ferret.isResting ? `${ferret.name} is resting... 💤` : `${ferret.name} woke up! 🌟`);
+            ferret.isPlaying = false;
+            ferret.isEating = false;
+            showToast(ferret.isResting ? `${ferret.name} is napping... 💤` : `${ferret.name} woke up! 🌟`);
             saveGame();
             renderFerrets();
         }
 
+        function moveFerret(ferretId) {
+            const ferret = gameState.ferrets.find(f => f.id == ferretId);
+            if (!ferret || ferret.isResting || ferret.isEating || ferret.isPlaying) return;
+
+            const newPos = 15 + Math.random() * 70;
+            ferret.faceLeft = newPos < ferret.position;
+            
+            const ferretEl = document.querySelector(`.ferret[data-id="${ferretId}"]`);
+            if (ferretEl) {
+                ferretEl.classList.add('walking');
+                ferretEl.style.left = newPos + '%';
+                if (ferret.faceLeft) ferretEl.classList.add('face-left');
+                else ferretEl.classList.remove('face-left');
+                setTimeout(() => ferretEl.classList.remove('walking'), 2000);
+            }
+            ferret.position = newPos;
+        }
+
         function plantCrop(plotIndex) {
             if (gameState.farm[plotIndex].crop) return;
-
-            gameState.farm[plotIndex] = {
-                crop: selectedSeed,
-                progress: 0,
-                ready: false
-            };
-
+            gameState.farm[plotIndex] = { crop: selectedSeed, progress: 0, ready: false };
             showToast(`Planted ${CONFIG.CROPS[selectedSeed].icon}!`);
             saveGame();
             renderFarm();
@@ -1517,10 +1518,8 @@
         function harvestCrop(plotIndex) {
             const plot = gameState.farm[plotIndex];
             if (!plot.ready) return;
-
             gameState.inventory[plot.crop]++;
             gameState.farm[plotIndex] = { crop: null, progress: 0, ready: false };
-
             showToast(`Harvested ${CONFIG.CROPS[plot.crop].icon}!`);
             saveGame();
             renderFarm();
@@ -1530,65 +1529,53 @@
         function adoptFerret(shelterIndex) {
             const ferret = gameState.shelter[shelterIndex];
             if (!ferret) return;
-
             pendingAdoption = { ferret, index: shelterIndex };
-            document.getElementById('newFerretPersonality').textContent = 
-                `${ferret.personality.emoji} ${ferret.personality.name}`;
+            document.getElementById('newFerretPersonality').textContent = `${ferret.personality.emoji} ${ferret.personality.name}`;
             document.getElementById('ferretNameInput').value = ferret.name;
+            document.getElementById('adoptPreview').innerHTML = `
+                <div style="background: linear-gradient(180deg, #E8F5E9 0%, #A5D6A7 100%); border-radius: 10px; height: 70px; position: relative; overflow: hidden;">
+                    ${createFerretHTML({...ferret, position: 50}, true)}
+                </div>`;
             document.getElementById('nameModal').classList.add('active');
+            document.getElementById('ferretNameInput').focus();
         }
 
         function confirmAdoption() {
             if (!pendingAdoption) return;
-
             const name = document.getElementById('ferretNameInput').value.trim();
-            if (!name) {
-                showToast('Please enter a name!');
-                return;
-            }
+            if (!name) { showToast('Please enter a name!'); return; }
 
             pendingAdoption.ferret.name = name;
+            pendingAdoption.ferret.position = 50;
             gameState.ferrets.push(pendingAdoption.ferret);
             gameState.shelter.splice(pendingAdoption.index, 1);
 
             document.getElementById('nameModal').classList.remove('active');
-            showToast(`Welcome ${name} to the family! 🎉`);
-            
+            showToast(`Welcome ${name} to the family! 🎉💕`);
+            startFerretMovement(pendingAdoption.ferret.id);
             pendingAdoption = null;
             saveGame();
             renderAll();
         }
 
         function putUpForAdoption(ferretId) {
-            const ferret = gameState.ferrets.find(f => f.id === ferretId);
+            const ferret = gameState.ferrets.find(f => f.id == ferretId);
             if (!ferret) return;
-
-            showConfirm(
-                '💕 Find a New Home?',
-                `Are you sure you want to find a loving family for ${ferret.name}? They will be very happy!`,
-                () => {
-                    gameState.ferrets = gameState.ferrets.filter(f => f.id !== ferretId);
-                    gameState.adoptedOut.push({
-                        name: ferret.name,
-                        personality: ferret.personality,
-                        color: ferret.color,
-                        adoptedDate: Date.now()
-                    });
-                    gameState.stats.totalAdoptedOut++;
-
-                    // Show goodbye animation
-                    showGoodbyeAnimation(ferret);
-
-                    saveGame();
-                    renderAll();
-                }
-            );
+            showConfirm('💕 Find a New Home?', `Find a loving family for ${ferret.name}?`, () => {
+                if (ferretMovementTimers[ferretId]) { clearInterval(ferretMovementTimers[ferretId]); delete ferretMovementTimers[ferretId]; }
+                gameState.ferrets = gameState.ferrets.filter(f => f.id != ferretId);
+                gameState.adoptedOut.push({ name: ferret.name, personality: ferret.personality, color: ferret.color, adoptedDate: Date.now() });
+                gameState.stats.totalAdoptedOut++;
+                showGoodbyeAnimation(ferret);
+                saveGame();
+                renderAll();
+            });
         }
 
         function showGoodbyeAnimation(ferret) {
             const el = document.createElement('div');
             el.className = 'goodbye-animation';
-            el.textContent = `${ferret.color} 💕`;
+            el.innerHTML = '🦡💕🏠';
             document.body.appendChild(el);
             setTimeout(() => el.remove(), 2000);
             showToast(`${ferret.name} found a loving home! 🏠💕`);
@@ -1598,116 +1585,72 @@
             gameState.shelter = [];
             const count = 2 + Math.floor(Math.random() * 2);
             for (let i = 0; i < count; i++) {
-                gameState.shelter.push(generateFerret());
+                const ferret = generateFerret();
+                ferret.position = 50;
+                gameState.shelter.push(ferret);
             }
             saveGame();
             renderShelter();
         }
 
-        // ============================================
-        // RENDERING FUNCTIONS
-        // ============================================
+        function startFerretMovement(ferretId) {
+            if (ferretMovementTimers[ferretId]) clearInterval(ferretMovementTimers[ferretId]);
+            ferretMovementTimers[ferretId] = setInterval(() => moveFerret(ferretId), CONFIG.MOVEMENT_INTERVAL + Math.random() * 3000);
+        }
+
+        function startAllFerretMovements() {
+            gameState.ferrets.forEach(f => startFerretMovement(f.id));
+        }
 
         function renderFerrets() {
             const container = document.getElementById('ferretsList');
-
             if (gameState.ferrets.length === 0) {
-                container.innerHTML = `
-                    <div class="no-ferrets">
-                        <div class="icon">🦡</div>
-                        <h3>No Ferrets Yet!</h3>
-                        <p>Visit the Adopt tab to find your first fuzzy friend!</p>
-                    </div>
-                `;
+                container.innerHTML = `<div class="no-ferrets"><div class="icon">🦡</div><h3>No Ferrets Yet!</h3><p>Visit the Adopt tab to find your first fuzzy friend!</p></div>`;
                 return;
             }
 
             container.innerHTML = gameState.ferrets.map(ferret => `
                 <div class="ferret-card">
-                    <div class="ferret-header">
-                        <div class="ferret-avatar ${ferret.isResting ? 'sleeping' : ''}">
-                            ${ferret.color}
-                        </div>
-                        <div class="ferret-info">
-                            <h3>${ferret.name}</h3>
-                            <span class="ferret-personality">${ferret.personality.emoji} ${ferret.personality.name}</span>
-                            <div class="ferret-age">Age: ${Math.floor(ferret.age)} min</div>
-                        </div>
+                    <div class="ferret-habitat">${createFerretHTML(ferret)}</div>
+                    <div class="ferret-info-row">
+                        <span class="ferret-name-tag">${ferret.name}</span>
+                        <span class="ferret-personality">${ferret.personality.emoji} ${ferret.personality.name}</span>
                     </div>
-                    <div class="stats-container">
-                        <div class="stat-bar stat-hunger">
-                            <div class="stat-label">🍖 Hunger</div>
-                            <div class="stat-track">
-                                <div class="stat-fill" style="width: ${ferret.hunger}%; background: ${getStatColor(ferret.hunger)}"></div>
-                            </div>
-                        </div>
-                        <div class="stat-bar stat-happiness">
-                            <div class="stat-label">💖 Happy</div>
-                            <div class="stat-track">
-                                <div class="stat-fill" style="width: ${ferret.happiness}%"></div>
-                            </div>
-                        </div>
-                        <div class="stat-bar stat-energy">
-                            <div class="stat-label">⚡ Energy</div>
-                            <div class="stat-track">
-                                <div class="stat-fill" style="width: ${ferret.energy}%"></div>
-                            </div>
-                        </div>
-                        <div class="stat-bar stat-health">
-                            <div class="stat-label">💚 Health</div>
-                            <div class="stat-track">
-                                <div class="stat-fill" style="width: ${ferret.health}%"></div>
-                            </div>
-                        </div>
+                    <div class="ferret-age">Age: ${Math.floor(ferret.age)} min • ${ferret.color}</div>
+                    <div class="stats-grid">
+                        <div class="stat-bar"><div class="stat-label">🍖 Hunger</div><div class="stat-track"><div class="stat-fill ${getStatLevel(ferret.hunger)}" style="width: ${ferret.hunger}%"></div></div></div>
+                        <div class="stat-bar"><div class="stat-label">💖 Happy</div><div class="stat-track"><div class="stat-fill ${getStatLevel(ferret.happiness)}" style="width: ${ferret.happiness}%"></div></div></div>
+                        <div class="stat-bar"><div class="stat-label">⚡ Energy</div><div class="stat-track"><div class="stat-fill ${getStatLevel(ferret.energy)}" style="width: ${ferret.energy}%"></div></div></div>
+                        <div class="stat-bar"><div class="stat-label">💚 Health</div><div class="stat-track"><div class="stat-fill ${getStatLevel(ferret.health)}" style="width: ${ferret.health}%"></div></div></div>
                     </div>
                     <div class="action-buttons">
-                        <button class="action-btn btn-feed" onclick="openFeedModal('${ferret.id}')">
-                            🍽️ Feed
-                        </button>
-                        <button class="action-btn btn-play" onclick="playWithFerret('${ferret.id}')" ${ferret.energy < 10 ? 'disabled' : ''}>
-                            🎮 Play
-                        </button>
-                        <button class="action-btn btn-rest" onclick="toggleRest('${ferret.id}')">
-                            ${ferret.isResting ? '☀️ Wake' : '😴 Rest'}
-                        </button>
-                        <button class="action-btn btn-adopt-out" onclick="putUpForAdoption('${ferret.id}')">
-                            🏠 Adopt
-                        </button>
+                        <button class="action-btn btn-feed" onclick="openFeedModal('${ferret.id}')" ${ferret.isEating || ferret.isPlaying ? 'disabled' : ''}><span class="btn-icon">🍽️</span>Feed</button>
+                        <button class="action-btn btn-play" onclick="playWithFerret('${ferret.id}')" ${ferret.energy < 15 || ferret.isEating || ferret.isPlaying || ferret.isResting ? 'disabled' : ''}><span class="btn-icon">🎮</span>Play</button>
+                        <button class="action-btn btn-rest" onclick="toggleRest('${ferret.id}')" ${ferret.isEating || ferret.isPlaying ? 'disabled' : ''}><span class="btn-icon">${ferret.isResting ? '☀️' : '😴'}</span>${ferret.isResting ? 'Wake' : 'Rest'}</button>
+                        <button class="action-btn btn-adopt-out" onclick="putUpForAdoption('${ferret.id}')"><span class="btn-icon">🏠</span>Adopt</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function getStatColor(value) {
-            if (value > 60) return 'linear-gradient(90deg, #81C784, #4CAF50)';
-            if (value > 30) return 'linear-gradient(90deg, #FFB74D, #FF9800)';
-            return 'linear-gradient(90deg, #EF9A9A, #F44336)';
+        function getStatLevel(value) {
+            if (value > 60) return 'high';
+            if (value > 30) return 'medium';
+            return 'low';
         }
 
         function renderFarm() {
             const container = document.getElementById('farmGrid');
-
-            container.innerHTML = gameState.farm.map((plot, index) => {
-                if (!plot.crop) {
-                    return `<div class="farm-plot empty" onclick="plantCrop(${index})"></div>`;
-                }
-
+            container.innerHTML = gameState.farm.map((plot, i) => {
+                if (!plot.crop) return `<div class="farm-plot empty" onclick="plantCrop(${i})"></div>`;
                 const crop = CONFIG.CROPS[plot.crop];
                 const progress = Math.min(100, (plot.progress / crop.growTime) * 100);
-
-                return `
-                    <div class="farm-plot ${plot.ready ? 'ready' : ''}" onclick="${plot.ready ? `harvestCrop(${index})` : ''}">
-                        <span class="crop-icon">${crop.icon}</span>
-                        ${!plot.ready ? `
-                            <div class="progress-ring">
-                                <div class="progress-fill" style="width: ${progress}%"></div>
-                            </div>
-                        ` : '<span style="font-size: 0.7rem; color: #4CAF50; font-weight: bold;">READY!</span>'}
-                    </div>
-                `;
+                return `<div class="farm-plot ${plot.ready ? 'ready' : ''}" onclick="${plot.ready ? `harvestCrop(${i})` : ''}">
+                    <span class="crop-icon">${crop.icon}</span>
+                    ${!plot.ready ? `<div class="progress-ring"><div class="progress-fill" style="width: ${progress}%"></div></div>` : '<span style="font-size: 0.65rem; color: #4CAF50; font-weight: bold;">TAP!</span>'}
+                </div>`;
             }).join('');
 
-            // Update inventory display
             document.getElementById('carrotCount').textContent = gameState.inventory.carrot;
             document.getElementById('chickenCount').textContent = gameState.inventory.chicken;
             document.getElementById('eggCount').textContent = gameState.inventory.egg;
@@ -1716,52 +1659,29 @@
 
         function renderShelter() {
             const container = document.getElementById('shelterFerrets');
-
             if (gameState.shelter.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="emoji">🏠</div>
-                        <p>No ferrets in the shelter right now.<br>Check back soon!</p>
-                    </div>
-                `;
+                container.innerHTML = `<div class="empty-state"><div class="emoji">🏠</div><p>No ferrets right now. Check back soon!</p></div>`;
                 return;
             }
-
-            container.innerHTML = gameState.shelter.map((ferret, index) => `
+            container.innerHTML = gameState.shelter.map((f, i) => `
                 <div class="shelter-card">
-                    <div class="shelter-avatar">${ferret.color}</div>
-                    <div class="shelter-info">
-                        <h4>${ferret.name}</h4>
-                        <p>${ferret.personality.emoji} ${ferret.personality.name}</p>
-                    </div>
-                    <button class="adopt-btn" onclick="adoptFerret(${index})">
-                        Adopt! 💕
-                    </button>
+                    <div class="shelter-ferret-preview"><div class="mini-ferret">${createFerretHTML({...f, position: 50}, true)}</div></div>
+                    <div class="shelter-info"><h4>${f.name}</h4><p>${f.personality.emoji} ${f.personality.name}</p><p style="font-size: 0.7rem; text-transform: capitalize;">Color: ${f.color}</p></div>
+                    <button class="adopt-btn" onclick="adoptFerret(${i})">Adopt! 💕</button>
                 </div>
             `).join('');
         }
 
         function renderAdoptedOut() {
             const container = document.getElementById('adoptedFerrets');
-
             if (gameState.adoptedOut.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="emoji">💕</div>
-                        <p>No ferrets adopted out yet.<br>When you find them loving homes, they'll appear here!</p>
-                    </div>
-                `;
+                container.innerHTML = `<div class="empty-state"><div class="emoji">💕</div><p>No ferrets adopted out yet.</p></div>`;
                 return;
             }
-
-            container.innerHTML = gameState.adoptedOut.map(ferret => `
-                <div class="shelter-card" style="background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%); border-color: #E91E63;">
-                    <div class="shelter-avatar" style="border-color: #E91E63;">${ferret.color}</div>
-                    <div class="shelter-info">
-                        <h4 style="color: #880E4F;">${ferret.name}</h4>
-                        <p style="color: #AD1457;">${ferret.personality.emoji} ${ferret.personality.name}</p>
-                        <p style="font-size: 0.7rem; color: #C2185B;">Found a home ${formatTimeAgo(ferret.adoptedDate)}</p>
-                    </div>
+            container.innerHTML = gameState.adoptedOut.slice().reverse().map(f => `
+                <div class="shelter-card adopted-card">
+                    <div class="shelter-ferret-preview"><div class="mini-ferret">${createFerretHTML({...f, position: 50}, true)}</div></div>
+                    <div class="shelter-info"><h4>${f.name}</h4><p>${f.personality.emoji} ${f.personality.name}</p><p style="font-size: 0.65rem;">Found a home ${formatTimeAgo(f.adoptedDate)}</p></div>
                     <span style="font-size: 1.5rem;">🏠💕</span>
                 </div>
             `).join('');
@@ -1769,40 +1689,25 @@
 
         function updateOverviewStats() {
             document.getElementById('ferretCount').textContent = gameState.ferrets.length;
-            document.getElementById('totalFood').textContent = 
-                Object.values(gameState.inventory).reduce((a, b) => a + b, 0);
+            document.getElementById('totalFood').textContent = Object.values(gameState.inventory).reduce((a, b) => a + b, 0);
             document.getElementById('adoptedOut').textContent = gameState.stats.totalAdoptedOut;
         }
 
-        function renderAll() {
-            renderFerrets();
-            renderFarm();
-            renderShelter();
-            renderAdoptedOut();
-            updateOverviewStats();
-        }
-
-        // ============================================
-        // UI FUNCTIONS
-        // ============================================
+        function renderAll() { renderFerrets(); renderFarm(); renderShelter(); renderAdoptedOut(); updateOverviewStats(); }
 
         function openFeedModal(ferretId) {
             feedingFerretId = ferretId;
             const ferret = gameState.ferrets.find(f => f.id == ferretId);
             if (!ferret) return;
-
             document.getElementById('feedFerretName').textContent = ferret.name;
-
-            const options = document.getElementById('feedOptions');
-            options.innerHTML = Object.entries(CONFIG.CROPS).map(([key, crop]) => `
-                <div class="feed-option ${gameState.inventory[key] <= 0 ? 'disabled' : ''}" 
-                     onclick="${gameState.inventory[key] > 0 ? `selectFood('${key}')` : ''}">
+            document.getElementById('feedOptions').innerHTML = Object.entries(CONFIG.CROPS).map(([key, crop]) => `
+                <div class="feed-option ${gameState.inventory[key] <= 0 ? 'disabled' : ''}" onclick="${gameState.inventory[key] > 0 ? `selectFood('${key}')` : ''}">
                     <div class="food-icon">${crop.icon}</div>
-                    <div class="food-name">${key.charAt(0).toUpperCase() + key.slice(1)}</div>
+                    <div class="food-name">${crop.name}</div>
                     <div class="food-count">×${gameState.inventory[key]}</div>
+                    <div class="food-boost">+${crop.hungerBoost}${crop.happinessBoost ? ` +${crop.happinessBoost}💖` : ''}</div>
                 </div>
             `).join('');
-
             document.getElementById('feedModal').classList.add('active');
         }
 
@@ -1833,16 +1738,11 @@
             const minutes = Math.floor(diff / 60000);
             const hours = Math.floor(minutes / 60);
             const days = Math.floor(hours / 24);
-
-            if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
-            if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-            if (minutes > 0) return `${minutes} min${minutes > 1 ? 's' : ''} ago`;
+            if (days > 0) return `${days}d ago`;
+            if (hours > 0) return `${hours}h ago`;
+            if (minutes > 0) return `${minutes}m ago`;
             return 'just now';
         }
-
-        // ============================================
-        // BACKUP & RESTORE
-        // ============================================
 
         function downloadBackup() {
             const data = JSON.stringify(gameState, null, 2);
@@ -1850,10 +1750,10 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `ferret-farm-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.download = `ferret-farm-${new Date().toISOString().split('T')[0]}.json`;
             a.click();
             URL.revokeObjectURL(url);
-            showToast('Backup downloaded! 💾');
+            showToast('Backup saved! 💾');
         }
 
         function restoreBackup(file) {
@@ -1861,58 +1761,43 @@
             reader.onload = async (e) => {
                 try {
                     const data = JSON.parse(e.target.result);
-                    // Validate the data has expected structure
-                    if (!data.ferrets || !data.inventory || !data.farm) {
-                        throw new Error('Invalid backup file');
-                    }
+                    if (!data.ferrets || !data.inventory || !data.farm) throw new Error('Invalid');
+                    Object.keys(ferretMovementTimers).forEach(id => clearInterval(ferretMovementTimers[id]));
+                    ferretMovementTimers = {};
                     gameState = data;
                     gameState.lastUpdate = Date.now();
+                    gameState.adoptedOut = gameState.adoptedOut || [];
+                    gameState.stats = gameState.stats || { totalAdoptedOut: 0 };
+                    gameState.shelter = gameState.shelter || [];
+                    gameState.ferrets.forEach(f => { if (!f.position) f.position = 50; f.isEating = false; f.isPlaying = false; });
                     await saveGame();
+                    startAllFerretMovements();
                     renderAll();
-                    showToast('Backup restored! 🎉');
-                } catch (error) {
-                    showToast('Invalid backup file! 😢');
-                }
+                    showToast('Restored! 🎉');
+                } catch (err) { showToast('Invalid file! 😢'); console.error(err); }
             };
             reader.readAsText(file);
         }
 
         function resetGame() {
-            showConfirm(
-                '⚠️ Reset Everything?',
-                'This will delete ALL your ferrets, farm, and progress. This cannot be undone!',
-                async () => {
-                    gameState = {
-                        ferrets: [],
-                        inventory: { carrot: 5, chicken: 2, egg: 3, treat: 1 },
-                        farm: [],
-                        shelter: [],
-                        adoptedOut: [],
-                        stats: { totalAdoptedOut: 0 },
-                        lastUpdate: Date.now()
-                    };
-                    initializeFarm();
-                    refreshShelter();
-                    await saveGame();
-                    renderAll();
-                    showToast('Game reset! Starting fresh! 🌱');
-                }
-            );
+            showConfirm('⚠️ Reset?', 'Delete ALL progress? Cannot be undone!', async () => {
+                Object.keys(ferretMovementTimers).forEach(id => clearInterval(ferretMovementTimers[id]));
+                ferretMovementTimers = {};
+                gameState = { ferrets: [], inventory: { carrot: 5, chicken: 2, egg: 3, treat: 1 }, farm: [], shelter: [], adoptedOut: [], stats: { totalAdoptedOut: 0 }, lastUpdate: Date.now() };
+                initializeFarm();
+                refreshShelter();
+                await saveGame();
+                renderAll();
+                showToast('Reset complete! 🌱');
+            });
         }
 
         function initializeFarm() {
             gameState.farm = [];
-            for (let i = 0; i < CONFIG.PLOT_COUNT; i++) {
-                gameState.farm.push({ crop: null, progress: 0, ready: false });
-            }
+            for (let i = 0; i < CONFIG.PLOT_COUNT; i++) gameState.farm.push({ crop: null, progress: 0, ready: false });
         }
 
-        // ============================================
-        // EVENT LISTENERS
-        // ============================================
-
         function setupEventListeners() {
-            // Navigation tabs
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.addEventListener('click', () => {
                     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -1922,7 +1807,6 @@
                 });
             });
 
-            // Seed selection
             document.querySelectorAll('.seed-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.seed-btn').forEach(b => b.classList.remove('selected'));
@@ -1931,144 +1815,49 @@
                 });
             });
 
-            // Modals
-            document.getElementById('closeFeedModal').addEventListener('click', () => {
-                document.getElementById('feedModal').classList.remove('active');
-            });
-
-            document.getElementById('cancelAdopt').addEventListener('click', () => {
-                document.getElementById('nameModal').classList.remove('active');
-                pendingAdoption = null;
-            });
-
+            document.getElementById('closeFeedModal').addEventListener('click', () => document.getElementById('feedModal').classList.remove('active'));
+            document.getElementById('cancelAdopt').addEventListener('click', () => { document.getElementById('nameModal').classList.remove('active'); pendingAdoption = null; });
             document.getElementById('confirmAdopt').addEventListener('click', confirmAdoption);
-
-            document.getElementById('ferretNameInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') confirmAdoption();
-            });
-
-            document.getElementById('confirmCancel').addEventListener('click', () => {
-                document.getElementById('confirmModal').classList.remove('active');
-                confirmCallback = null;
-            });
-
-            document.getElementById('confirmOk').addEventListener('click', () => {
-                document.getElementById('confirmModal').classList.remove('active');
-                if (confirmCallback) {
-                    confirmCallback();
-                    confirmCallback = null;
-                }
-            });
-
-            // Data buttons
+            document.getElementById('ferretNameInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') confirmAdoption(); });
+            document.getElementById('confirmCancel').addEventListener('click', () => { document.getElementById('confirmModal').classList.remove('active'); confirmCallback = null; });
+            document.getElementById('confirmOk').addEventListener('click', () => { document.getElementById('confirmModal').classList.remove('active'); if (confirmCallback) { confirmCallback(); confirmCallback = null; } });
             document.getElementById('backupBtn').addEventListener('click', downloadBackup);
-            document.getElementById('restoreBtn').addEventListener('click', () => {
-                document.getElementById('restoreInput').click();
-            });
-            document.getElementById('restoreInput').addEventListener('change', (e) => {
-                if (e.target.files[0]) {
-                    restoreBackup(e.target.files[0]);
-                    e.target.value = '';
-                }
-            });
+            document.getElementById('restoreBtn').addEventListener('click', () => document.getElementById('restoreInput').click());
+            document.getElementById('restoreInput').addEventListener('change', (e) => { if (e.target.files[0]) { restoreBackup(e.target.files[0]); e.target.value = ''; } });
             document.getElementById('resetBtn').addEventListener('click', resetGame);
-
-            // Close modals on overlay click
-            document.querySelectorAll('.modal-overlay').forEach(overlay => {
-                overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) {
-                        overlay.classList.remove('active');
-                    }
-                });
-            });
+            document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', (e) => { if (e.target === o) o.classList.remove('active'); }));
         }
-
-        // ============================================
-        // PWA INSTALL PROMPT
-        // ============================================
 
         let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; document.getElementById('installPrompt').classList.add('show'); });
+        document.getElementById('installBtn')?.addEventListener('click', async () => { if (deferredPrompt) { deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; document.getElementById('installPrompt').classList.remove('show'); } });
+        document.getElementById('dismissInstall')?.addEventListener('click', () => document.getElementById('installPrompt').classList.remove('show'));
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('installPrompt').classList.add('show');
-        });
-
-        document.getElementById('installBtn')?.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const result = await deferredPrompt.userChoice;
-                if (result.outcome === 'accepted') {
-                    showToast('App installed! 🎉');
-                }
-                deferredPrompt = null;
-                document.getElementById('installPrompt').classList.remove('show');
-            }
-        });
-
-        document.getElementById('dismissInstall')?.addEventListener('click', () => {
-            document.getElementById('installPrompt').classList.remove('show');
-        });
-
-        // ============================================
-        // GAME LOOP
-        // ============================================
-
-        function gameLoop() {
-            updateFerretStats();
-            renderFerrets();
-            renderFarm();
-            saveGame();
-        }
-
-        // ============================================
-        // INITIALIZATION
-        // ============================================
+        function gameLoop() { updateFerretStats(); renderFerrets(); renderFarm(); saveGame(); }
 
         async function init() {
             try {
                 await initDB();
-                const savedState = await loadGame();
-
-                if (savedState) {
-                    gameState = savedState;
-                    // Ensure all expected properties exist
+                const saved = await loadGame();
+                if (saved) {
+                    gameState = saved;
                     gameState.adoptedOut = gameState.adoptedOut || [];
                     gameState.stats = gameState.stats || { totalAdoptedOut: 0 };
                     gameState.shelter = gameState.shelter || [];
+                    gameState.ferrets.forEach(f => { if (!f.position) f.position = 50; f.isEating = false; f.isPlaying = false; });
                 }
-
-                if (gameState.farm.length === 0) {
-                    initializeFarm();
-                }
-
-                if (gameState.shelter.length === 0) {
-                    refreshShelter();
-                }
-
+                if (gameState.farm.length === 0) initializeFarm();
+                if (gameState.shelter.length === 0) refreshShelter();
                 setupEventListeners();
                 renderAll();
-
-                // Start game loop
+                startAllFerretMovements();
                 setInterval(gameLoop, CONFIG.TICK_RATE);
-
-                // Refresh shelter periodically
-                setInterval(refreshShelter, CONFIG.SHELTER_REFRESH_TIME);
-
-                // Register service worker
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('sw.js').catch(console.error);
-                }
-
+                setInterval(refreshShelter, CONFIG.SHELTER_REFRESH);
+                if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(console.error);
                 console.log('🦡 Autumn\'s Ferret Farm loaded!');
-            } catch (error) {
-                console.error('Failed to initialize game:', error);
-                showToast('Error loading game. Please refresh.');
-            }
+            } catch (err) { console.error('Init failed:', err); showToast('Error loading. Please refresh.'); }
         }
 
-        // Start the game
         init();
     </script>
 </body>
